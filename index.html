@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #0f0c1b, #150f2e, #0b0914);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .profile-header {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            z-index: 100;
+            animation: moveProfile 1.5s cubic-bezier(0.25, 1, 0.5, 1) 2s forwards;
+        }
+
+        @keyframes moveProfile {
+            0% {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                top: 10px;
+                left: 10px;
+                transform: translate(0, 0) scale(0.65);
+            }
+        }
+
+        .avatar-container {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #1e1b33;
+            border: 3px solid #8a2be2;
+            box-shadow: 0 0 20px #8a2be2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-wheel:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #ba55d3;
+            border-color: #ba55d3;
+        }
+
+        .side-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .menu-item {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: #161426;
+            border: 2px solid #4a3b75;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a397cd;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .side-menu.active .menu-item {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .side-menu.active .menu-item:nth-child(1) { transition-delay: 0.05s; }
+        .side-menu.active .menu-item:nth-child(2) { transition-delay: 0.12s; }
+        .side-menu.active .menu-item:nth-child(3) { transition-delay: 0.19s; }
+        .side-menu.active .menu-item:nth-child(4) { transition-delay: 0.26s; }
+
+        .menu-item:hover {
+            color: #fff;
+            transform: translateX(5px) scale(1.05);
+        }
+
+        .menu-item.tt:hover { background: #ff0050; border-color: #ff0050; box-shadow: 0 0 20px #ff0050; }
+        .menu-item.boosty:hover { background: #f15f2c; border-color: #f15f2c; box-shadow: 0 0 20px #f15f2c; }
+        .menu-item.donate:hover { background: #ff9a00; border-color: #ff9a00; box-shadow: 0 0 20px #ff9a00; }
+        .menu-item.tgc:hover { background: #0088cc; border-color: #0088cc; box-shadow: 0 0 20px #0088cc; }
+    </style>
+</head>
+<body>
+
+    <div class="profile-header" id="profileHeader">
+        <div class="avatar-container" onclick="toggleMenu()">
+            <div class="avatar-wheel">B</div>
+        </div>
+
+        <div class="side-menu" id="sideMenu">
+            <a href="https://tiktok.com" target="_blank" class="menu-item tt">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://boosty.to" target="_blank" class="menu-item boosty">
+                <i class="fas fa-rocket"></i>
+            </a>
+            <a href="https://donationalerts.com" target="_blank" class="menu-item donate">
+                <i class="fas fa-wallet"></i>
+            </a>
+            <a href="https://t.me" target="_blank" class="menu-item tgc">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const toggleMenu = () => {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('active');
+        };
+    </script>
+</body>
+</html>
